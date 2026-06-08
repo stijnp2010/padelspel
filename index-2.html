@@ -1,209 +1,118 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Padelspel — Altijd verse padelballen</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', sans-serif; background: #fff; color: #173404; }
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #3B6D11; position: sticky; top: 0; z-index: 100; }
-    .nav-logo { font-size: 18px; font-weight: 600; color: #fff; }
-    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-    .nav-right a { font-size: 14px; color: #C0DD97; text-decoration: none; }
-    .cart-btn { background: #639922; color: #fff; border: none; padding: 8px 16px; border-radius: 8px; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
-    .cart-count { background: #fff; color: #3B6D11; border-radius: 50%; width: 20px; height: 20px; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
-    .hero { background: #173404; display: grid; grid-template-columns: 1fr 1fr; min-height: 280px; }
-    .hero-text { padding: 3rem 2rem; display: flex; flex-direction: column; justify-content: center; }
-    .hero-text h1 { font-size: 30px; font-weight: 700; color: #fff; margin-bottom: 0.75rem; line-height: 1.3; }
-    .hero-text p { font-size: 14px; color: #C0DD97; line-height: 1.7; margin-bottom: 1.5rem; }
-    .btn-white { background: #fff; color: #3B6D11; border: none; padding: 10px 22px; border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: 600; }
-    .hero-img { overflow: hidden; }
-    .hero-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-    hr { border: none; border-top: 1px solid #C0DD97; }
-    section { padding: 2.5rem 2rem; }
-    section h2 { font-size: 20px; font-weight: 700; color: #173404; margin-bottom: 0.4rem; }
-    .sub { font-size: 14px; color: #3B6D11; margin-bottom: 1.5rem; }
-    .badge { display: inline-block; background: #639922; color: #fff; font-size: 11px; padding: 2px 8px; border-radius: 6px; margin-bottom: 6px; }
-    .drukhouder-card { background: #fff; border: 1px solid #C0DD97; border-radius: 12px; overflow: hidden; max-width: 480px; display: flex; }
-    .drukhouder-img { width: 160px; flex-shrink: 0; overflow: hidden; }
-    .drukhouder-img img { width: 100%; height: 100%; object-fit: cover; }
-    .drukhouder-info { padding: 1.25rem; }
-    .drukhouder-info h3 { font-size: 16px; font-weight: 600; color: #173404; margin-bottom: 6px; }
-    .drukhouder-info p { font-size: 13px; color: #3B6D11; line-height: 1.6; margin-bottom: 12px; }
-    .drukhouder-bottom { display: flex; align-items: center; gap: 1rem; }
-    .big-price { font-size: 22px; font-weight: 700; color: #27500A; }
-    .btn-green { background: #3B6D11; color: #fff; border: none; padding: 9px 20px; border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: 600; }
-    .btn-green:hover { background: #27500A; }
-    .ballen-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
-    .bal-card { background: #fff; border: 1px solid #C0DD97; border-radius: 12px; overflow: hidden; }
-    .bal-img { height: 130px; overflow: hidden; }
-    .bal-img img { width: 100%; height: 100%; object-fit: cover; }
-    .bal-body { padding: 1rem; }
-    .bal-name { font-size: 14px; font-weight: 600; color: #173404; margin-bottom: 4px; }
-    .bal-desc { font-size: 12px; color: #3B6D11; margin-bottom: 10px; line-height: 1.5; }
-    .bal-bottom { display: flex; align-items: center; justify-content: space-between; }
-    .bal-price { font-size: 16px; font-weight: 700; color: #27500A; }
-    .add-btn { background: #3B6D11; color: #fff; border: none; width: 30px; height: 30px; border-radius: 8px; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; }
-    .add-btn:hover { background: #27500A; }
-    .abo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
-    .abo-card { background: #fff; border: 1px solid #C0DD97; border-radius: 12px; padding: 1.25rem; }
-    .abo-card.featured { border: 2px solid #3B6D11; }
-    .abo-name { font-size: 15px; font-weight: 600; color: #173404; margin-bottom: 6px; }
-    .abo-price { font-size: 24px; font-weight: 700; color: #27500A; margin-bottom: 2px; }
-    .abo-price span { font-size: 13px; font-weight: 400; color: #3B6D11; }
-    .abo-desc { font-size: 12px; color: #3B6D11; margin-bottom: 12px; line-height: 1.5; }
-    .abo-features { list-style: none; font-size: 12px; color: #27500A; display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
-    .abo-features li::before { content: "✓ "; color: #639922; }
-    .abo-btn { background: #3B6D11; color: #fff; border: none; width: 100%; padding: 9px; border-radius: 8px; font-size: 13px; cursor: pointer; font-weight: 600; }
-    .abo-btn:hover { background: #27500A; }
-    .cart-wrap { background: #EAF3DE; padding: 2rem; display: none; }
-    .cart-wrap.visible { display: block; }
-    .cart-inner { max-width: 540px; }
-    .cart-item { background: #fff; border: 1px solid #C0DD97; border-radius: 12px; padding: 0.9rem 1rem; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-    .ci-name { font-size: 13px; font-weight: 600; color: #173404; }
-    .ci-price { font-size: 13px; color: #27500A; margin-top: 2px; }
-    .rm-btn { background: none; border: none; color: #97C459; cursor: pointer; font-size: 18px; }
-    .cart-total { font-size: 15px; font-weight: 700; color: #173404; text-align: right; margin-top: 0.75rem; }
-    .checkout-btn { background: #3B6D11; color: #fff; border: none; padding: 12px; border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: 600; width: 100%; margin-top: 1rem; }
-    .checkout-btn:hover { background: #27500A; }
-    footer { padding: 1.5rem 2rem; background: #173404; text-align: center; font-size: 13px; color: #97C459; }
-  </style>
-</head>
-<body>
+SPELPADEL
+DRUKHOUDER
+BALLEN
+ABONNEMENT
+CONTACT
 
-<nav>
-  <span class="nav-logo">🎾 Padelspel</span>
-  <div class="nav-right">
-    <a href="#">Drukhouder</a>
-    <a href="#">Ballen</a>
-    <a href="#">Abonnement</a>
-    <button class="cart-btn" onclick="toggleCart()">🛒 Winkelwagen <span class="cart-count" id="cart-count">0</span></button>
-  </div>
-</nav>
+Winkelwagen
+0
+JOUW PADELSPECIALIST
 
-<div class="hero">
-  <div class="hero-text">
-    <h1>Altijd verse padelballen</h1>
-    <p>Bestel losse ballen, sluit een abonnement af of houd je ballen langer goed met onze drukhouder.</p>
-    <button class="btn-white">Bekijk producten</button>
-  </div>
-  <div class="hero-img">
-    <img src="https://images.unsplash.com/photo-1599586120429-48281b6f0ece?w=800&q=80" alt="Padel baan">
-  </div>
-</div>
+Altijd verse padelballen
 
-<hr>
+Bestel losse ballen per doos, houd ze langer goed met onze drukhouder of kies een abonnement dat past bij jouw speelfrequentie.
 
-<section>
-  <h2>Padelballen drukhouder</h2>
-  <p class="sub">Houd je ballen langer op druk — en speel altijd op je best.</p>
-  <div class="drukhouder-card">
-    <div class="drukhouder-img">
-      <img src="https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=400&q=80" alt="Padelballen">
-    </div>
-    <div class="drukhouder-info">
-      <h3>Padelballen drukhouder</h3>
-      <p>Bewaar je padelballen onder druk zodat ze langer meegaan. Past 3 ballen, gemakkelijk te gebruiken.</p>
-      <div class="drukhouder-bottom">
-        <span class="big-price">€60,00</span>
-        <button class="btn-green" onclick="addToCart('Padelballen drukhouder', 60.00)">In winkelwagen</button>
-      </div>
-    </div>
-  </div>
-</section>
 
-<hr>
+Bekijk producten
+Abonnement bekijken
+Padelbaan
+Snelle verzending
+Altijd opzegbaar
+Officiële wedstrijdballen
+Reactie binnen 24 uur
+UITGELICHT PRODUCT
 
-<section style="background: #EAF3DE;">
-  <h2>Losse ballen</h2>
-  <p class="sub">Per doos van 3 stuks te bestellen.</p>
-  <div class="ballen-grid">
-    <div class="bal-card">
-      <div class="bal-img"><img src="https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?w=400&q=80" alt="1 doos"></div>
-      <div class="bal-body">
-        <div class="badge">Bestseller</div>
-        <div class="bal-name">Padelballen — 1 doos</div>
-        <div class="bal-desc">3 officiële wedstrijdballen.</div>
-        <div class="bal-bottom"><span class="bal-price">€7,99</span><button class="add-btn" onclick="addToCart('Padelballen (1 doos)', 7.99)">+</button></div>
-      </div>
-    </div>
-    <div class="bal-card">
-      <div class="bal-img"><img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=400&q=80" alt="2 dozen"></div>
-      <div class="bal-body">
-        <div class="bal-name">Padelballen — 2 dozen</div>
-        <div class="bal-desc">6 ballen, kleine besparing.</div>
-        <div class="bal-bottom"><span class="bal-price">€14,99</span><button class="add-btn" onclick="addToCart('Padelballen (2 dozen)', 14.99)">+</button></div>
-      </div>
-    </div>
-    <div class="bal-card">
-      <div class="bal-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="4 dozen"></div>
-      <div class="bal-body">
-        <div class="badge">Voordeelpak</div>
-        <div class="bal-name">Padelballen — 4 dozen</div>
-        <div class="bal-desc">12 ballen, meest voordelig.</div>
-        <div class="bal-bottom"><span class="bal-price">€26,99</span><button class="add-btn" onclick="addToCart('Padelballen (4 dozen)', 26.99)">+</button></div>
-      </div>
-    </div>
-  </div>
-</section>
+Padel drukhouder Nieuw in assortiment
+Padelballen drukhouder
 
-<hr>
+Bewaar je padelballen onder de juiste druk zodat ze veel langer meegaan. Ideaal voor spelers die altijd willen presteren met optimale ballen.
 
-<section>
-  <h2>Abonnement</h2>
-  <p class="sub">Automatisch ballen ontvangen — altijd opzegbaar.</p>
-  <div class="abo-grid">
-    <div class="abo-card">
-      <div class="abo-name">Wekelijks</div>
-      <div class="abo-price">€7,99 <span>/ week</span></div>
-      <p class="abo-desc">Elke week 1 doos (3 ballen) aan de deur.</p>
-      <ul class="abo-features"><li>1 doos per week</li><li>Gratis verzending</li><li>Altijd opzegbaar</li></ul>
-      <button class="abo-btn" onclick="addToCart('Abonnement Wekelijks', 7.99)">Afsluiten</button>
-    </div>
-    <div class="abo-card">
-      <div class="abo-name">Maandelijks — 1 doos</div>
-      <div class="abo-price">€6,99 <span>/ maand</span></div>
-      <p class="abo-desc">Elke maand 1 doos (3 ballen) thuis bezorgd.</p>
-      <ul class="abo-features"><li>1 doos per maand</li><li>Gratis verzending</li><li>Altijd opzegbaar</li></ul>
-      <button class="abo-btn" onclick="addToCart('Abonnement Maandelijks 1 doos', 6.99)">Afsluiten</button>
-    </div>
-    <div class="abo-card featured">
-      <div class="badge">Meest gekozen</div>
-      <div class="abo-name">Maandelijks — 4 dozen</div>
-      <div class="abo-price">€24,99 <span>/ maand</span></div>
-      <p class="abo-desc">Elke maand 4 dozen (12 ballen) thuis bezorgd.</p>
-      <ul class="abo-features"><li>4 dozen per maand</li><li>Gratis verzending</li><li>10% korting op losse ballen</li><li>Altijd opzegbaar</li></ul>
-      <button class="abo-btn" onclick="addToCart('Abonnement Maandelijks 4 dozen', 24.99)">Afsluiten</button>
-    </div>
-  </div>
-</section>
+Past 3 padelballen
+Eenvoudig te gebruiken
+Ballen tot 3x langer houdbaar
+Lichtgewicht en duurzaam
+€
+60
+,00
+In winkelwagen
+LOSSE BALLEN
 
-<hr>
+Per doos bestellen
+Officiële wedstrijdballen, geschikt voor elk niveau en elke baan.
 
-<div class="cart-wrap" id="cart-section">
-  <div class="cart-inner">
-    <h2 style="margin-bottom:1rem;">Winkelwagen</h2>
-    <div id="cart-items"></div>
-    <div class="cart-total" id="cart-total"></div>
-    <button class="checkout-btn">Afrekenen</button>
-  </div>
-</div>
+1 doos BESTSELLER
+Padelballen — 1 doos
+3 officiële wedstrijdballen. Geschikt voor recreatief en competitief spel.
+€
+7
+,99
++
+2 dozen
+Padelballen — 2 dozen
+6 ballen. Handig voor regelmatige spelers die altijd een reserve hebben.
+€
+14
+,99
++
+4 dozen VOORDEELPAK
+Padelballen — 4 dozen
+12 ballen. Het meest voordelige pakket voor intensieve spelers en clubs.
+€
+26
+,99
++
+ABONNEMENTEN
 
-<footer>© 2026 Padelspel · Bergschenhoek · info@padelspel.nl</footer>
+Automatisch verse ballen
+Kies je frequentie — altijd opzegbaar, geen verplichtingen.
 
-<script>
-  let cart = [];
-  function addToCart(name, price) { cart.push({ name, price }); updateCart(); document.getElementById('cart-section').classList.add('visible'); }
-  function removeFromCart(i) { cart.splice(i, 1); updateCart(); if (cart.length === 0) document.getElementById('cart-section').classList.remove('visible'); }
-  function toggleCart() { if (cart.length === 0) return; document.getElementById('cart-section').classList.toggle('visible'); }
-  function updateCart() {
-    document.getElementById('cart-count').textContent = cart.length;
-    const c = document.getElementById('cart-items');
-    if (cart.length === 0) { c.innerHTML = '<p style="font-size:13px;color:#3B6D11;font-style:italic;">Je winkelwagen is leeg.</p>'; document.getElementById('cart-total').textContent = ''; return; }
-    c.innerHTML = cart.map((item, i) => `<div class="cart-item"><div><div class="ci-name">${item.name}</div><div class="ci-price">€${item.price.toFixed(2)}</div></div><button class="rm-btn" onclick="removeFromCart(${i})">🗑️</button></div>`).join('');
-    document.getElementById('cart-total').textContent = 'Totaal: €' + cart.reduce((s, i) => s + i.price, 0).toFixed(2);
-  }
-</script>
-</body>
-</html>
+Wekelijks
+€
+8
+,99
+PER WEEK
+1 doos (3 ballen) per week
+Snelle verzending
+Altijd opzegbaar
+Afsluiten
+Maandelijks — 1 doos
+€
+7
+,99
+PER MAAND
+1 doos (3 ballen) per maand
+Snelle verzending
+Altijd opzegbaar
+Afsluiten
+MEEST GEKOZEN
+Maandelijks — 4 dozen
+€
+29
+,99
+PER MAAND
+4 dozen (12 ballen) per maand
+Snelle verzending
+10% korting op losse ballen
+Altijd opzegbaar
+Afsluiten
+CONTACT
+
+Heb je een vraag?
+
+We helpen je graag verder. Stuur een bericht en we reageren binnen 24 uur.
+
+info@spelpadel.nl
+Bergschenhoek
+Reactie binnen 24 uur
+NAAM
+
+E-MAILADRES
+
+BERICHT
+
+Verstuur bericht
+SPELPADEL
+Privacybeleid
+Algemene voorwaarden
+info@spelpadel.nl
+© 2026
