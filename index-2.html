@@ -8,7 +8,7 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Segoe UI', sans-serif; background: #fff; color: #173404; }
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 0 2.5rem; height: 64px; background: #0d1f02; border-bottom: 0.5px solid #27500A; position: sticky; top: 0; z-index: 100; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 0 2.5rem; height: 64px; background: #0d1f02; border-bottom: 0.5px solid #27500A; }
     .nav-logo { font-size: 15px; font-weight: 500; color: #fff; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
     .nav-logo-dot { width: 8px; height: 8px; background: #639922; border-radius: 50%; }
     .nav-links { display: flex; gap: 2.5rem; }
@@ -44,8 +44,6 @@
     .section-dark h2 { color: #fff; }
     .section p.lead { font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 2.5rem; }
     .section-dark p.lead { color: #639922; }
-
-    /* DRUKHOUDER */
     .druk-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
     .druk-img { border-radius: 12px; overflow: hidden; height: 280px; position: relative; }
     .druk-img img { width: 100%; height: 100%; object-fit: cover; }
@@ -56,14 +54,9 @@
     .druk-features li { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #97C459; }
     .druk-features li i { color: #639922; font-size: 14px; }
     .druk-price-row { display: flex; align-items: center; gap: 1.5rem; }
-    .druk-price { display: flex; align-items: flex-start; gap: 2px; }
-    .druk-currency { font-size: 18px; font-weight: 500; color: #fff; margin-top: 8px; }
-    .druk-amount { font-size: 48px; font-weight: 500; color: #fff; line-height: 1; letter-spacing: -0.03em; }
-    .druk-decimals { font-size: 18px; font-weight: 500; color: #fff; margin-top: 8px; }
+    .druk-price { font-size: 30px; font-weight: 500; color: #fff; }
     .btn-druk { background: #639922; color: #fff; border: none; padding: 12px 28px; border-radius: 8px; font-size: 13px; cursor: pointer; font-family: 'Segoe UI', sans-serif; font-weight: 500; letter-spacing: 0.04em; }
     .btn-druk:hover { background: #3B6D11; }
-
-    /* BALLEN */
     .ballen-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     .bal-card { background: #fff; border: 0.5px solid #ddd; border-radius: 12px; overflow: hidden; }
     .bal-img { height: 180px; overflow: hidden; position: relative; }
@@ -74,34 +67,24 @@
     .bal-name { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
     .bal-desc { font-size: 12px; color: #666; margin-bottom: 1rem; line-height: 1.6; }
     .bal-footer { display: flex; align-items: center; justify-content: space-between; }
-    .bal-price { display: flex; align-items: flex-start; gap: 2px; }
-    .bal-currency { font-size: 12px; font-weight: 500; color: #27500A; margin-top: 4px; }
-    .bal-amount { font-size: 24px; font-weight: 500; color: #27500A; line-height: 1; letter-spacing: -0.02em; }
-    .bal-cents { font-size: 12px; font-weight: 500; color: #27500A; margin-top: 4px; }
+    .bal-price { font-size: 18px; font-weight: 500; color: #27500A; }
     .btn-plus { background: #3B6D11; color: #fff; border: none; width: 34px; height: 34px; border-radius: 8px; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; }
     .btn-plus:hover { background: #27500A; }
-
-    /* ABONNEMENTEN */
     .abo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     .abo-card { background: #fff; border: 0.5px solid #ddd; border-radius: 12px; padding: 1.75rem; display: flex; flex-direction: column; }
     .abo-card.featured { border: 2px solid #3B6D11; background: #f7faf2; }
     .abo-tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #27500A; background: #EAF3DE; padding: 4px 10px; border-radius: 8px; display: inline-block; margin-bottom: 1rem; }
-    .abo-name { font-size: 13px; font-weight: 500; margin-bottom: 0.75rem; color: #555; }
-    .abo-price { display: flex; align-items: flex-start; gap: 3px; margin-bottom: 4px; }
-    .abo-currency { font-size: 16px; font-weight: 500; color: #173404; margin-top: 6px; }
-    .abo-amount { font-size: 42px; font-weight: 500; color: #173404; line-height: 1; letter-spacing: -0.03em; }
-    .abo-decimals { font-size: 16px; font-weight: 500; color: #173404; margin-top: 6px; }
-    .abo-per { font-size: 11px; color: #888; margin-bottom: 1rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .abo-name { font-size: 14px; font-weight: 500; margin-bottom: 0.5rem; color: #555; letter-spacing: 0.02em; }
+    .abo-price { font-size: 32px; font-weight: 500; color: #173404; line-height: 1; }
+    .abo-per { font-size: 12px; color: #666; margin-bottom: 1rem; margin-top: 4px; }
     .abo-divider { border: none; border-top: 0.5px solid #ddd; margin: 1rem 0; }
     .abo-list { list-style: none; font-size: 12px; color: #555; display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; flex: 1; }
     .abo-list li { display: flex; align-items: center; gap: 8px; }
     .abo-list li i { color: #639922; font-size: 14px; flex-shrink: 0; }
-    .btn-abo { background: #3B6D11; color: #fff; border: none; width: 100%; padding: 11px; border-radius: 8px; font-size: 13px; cursor: pointer; font-family: 'Segoe UI', sans-serif; font-weight: 500; margin-top: auto; }
+    .btn-abo { background: #3B6D11; color: #fff; border: none; width: 100%; padding: 11px; border-radius: 8px; font-size: 13px; cursor: pointer; font-family: 'Segoe UI', sans-serif; font-weight: 500; letter-spacing: 0.04em; margin-top: auto; }
     .btn-abo:hover { background: #27500A; }
-    .btn-abo-out { background: transparent; color: #3B6D11; border: 0.5px solid #3B6D11; width: 100%; padding: 11px; border-radius: 8px; font-size: 13px; cursor: pointer; font-family: 'Segoe UI', sans-serif; margin-top: auto; }
+    .btn-abo-out { background: transparent; color: #3B6D11; border: 0.5px solid #3B6D11; width: 100%; padding: 11px; border-radius: 8px; font-size: 13px; cursor: pointer; font-family: 'Segoe UI', sans-serif; letter-spacing: 0.04em; margin-top: auto; }
     .btn-abo-out:hover { background: #EAF3DE; }
-
-    /* WINKELWAGEN */
     .cart-section { background: #EAF3DE; padding: 2.5rem; display: none; border-top: 0.5px solid #C0DD97; }
     .cart-section.visible { display: block; }
     .cart-inner { max-width: 560px; }
@@ -111,10 +94,8 @@
     .ci-price { font-size: 13px; color: #27500A; margin-top: 2px; }
     .rm-btn { background: none; border: none; color: #888; cursor: pointer; font-size: 16px; }
     .cart-total { font-size: 16px; font-weight: 500; text-align: right; margin-top: 1rem; color: #173404; }
-    .checkout-btn { background: #3B6D11; color: #fff; border: none; padding: 13px; border-radius: 8px; font-size: 14px; cursor: pointer; font-family: 'Segoe UI', sans-serif; font-weight: 500; width: 100%; margin-top: 1rem; }
+    .checkout-btn { background: #3B6D11; color: #fff; border: none; padding: 13px; border-radius: 8px; font-size: 14px; cursor: pointer; font-family: 'Segoe UI', sans-serif; font-weight: 500; width: 100%; margin-top: 1rem; letter-spacing: 0.04em; }
     .checkout-btn:hover { background: #27500A; }
-
-    /* CONTACT */
     .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
     .contact-info h2 { font-size: 24px; font-weight: 500; color: #fff; margin-bottom: 1rem; }
     .contact-info p { font-size: 13px; color: #639922; line-height: 1.8; margin-bottom: 2rem; }
@@ -125,14 +106,13 @@
     .form-row label { display: block; font-size: 10px; color: #639922; margin-bottom: 8px; letter-spacing: 0.1em; text-transform: uppercase; }
     .form-row input, .form-row textarea { width: 100%; padding: 10px 14px; border: 0.5px solid #27500A; border-radius: 8px; font-size: 13px; font-family: 'Segoe UI', sans-serif; color: #fff; background: #0d1f02; }
     .form-row textarea { height: 100px; resize: vertical; }
-    .send-btn { background: #639922; color: #fff; border: none; padding: 12px; border-radius: 8px; font-size: 13px; cursor: pointer; font-family: 'Segoe UI', sans-serif; font-weight: 500; width: 100%; }
+    .send-btn { background: #639922; color: #fff; border: none; padding: 12px; border-radius: 8px; font-size: 13px; cursor: pointer; font-family: 'Segoe UI', sans-serif; font-weight: 500; width: 100%; letter-spacing: 0.04em; }
     .send-btn:hover { background: #3B6D11; }
     .success-msg { display: none; background: #27500A; color: #C0DD97; padding: 10px 14px; border-radius: 8px; text-align: center; font-size: 13px; margin-top: 1rem; }
-
     footer { padding: 2rem 2.5rem; background: #060f01; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 0.5px solid #173404; }
     .footer-logo { font-size: 12px; color: #3B6D11; letter-spacing: 0.1em; text-transform: uppercase; }
     .footer-links { display: flex; gap: 2rem; }
-    .footer-links a { font-size: 11px; color: #3B6D11; text-decoration: none; cursor: pointer; }
+    .footer-links a { font-size: 11px; color: #3B6D11; text-decoration: none; cursor: pointer; letter-spacing: 0.04em; }
     .footer-links a:hover { color: #639922; }
   </style>
 </head>
@@ -174,7 +154,7 @@
 </div>
 
 <div class="strip">
-  <div class="strip-item"><i class="ti ti-truck-delivery"></i><span>Snelle verzending</span></div>
+  <div class="strip-item"><i class="ti ti-truck-delivery"></i><span>Gratis verzending bij abonnement</span></div>
   <div class="strip-item"><i class="ti ti-refresh"></i><span>Altijd opzegbaar</span></div>
   <div class="strip-item"><i class="ti ti-shield-check"></i><span>Officiële wedstrijdballen</span></div>
   <div class="strip-item"><i class="ti ti-clock"></i><span>Reactie binnen 24 uur</span></div>
@@ -197,11 +177,7 @@
         <li><i class="ti ti-check"></i> Lichtgewicht en duurzaam</li>
       </ul>
       <div class="druk-price-row">
-        <div class="druk-price">
-          <span class="druk-currency">€</span>
-          <span class="druk-amount">60</span>
-          <span class="druk-decimals">,00</span>
-        </div>
+        <span class="druk-price">€60,00</span>
         <button class="btn-druk" onclick="addToCart('Padelballen drukhouder', 60.00)">In winkelwagen</button>
       </div>
     </div>
@@ -215,53 +191,41 @@
   <div class="ballen-grid">
     <div class="bal-card">
       <div class="bal-img">
-        <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=600&q=80" alt="1 doos">
+        <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=600&q=80" alt="Padelballen 1 doos">
         <span class="bal-tag">Bestseller</span>
       </div>
       <div class="bal-body">
         <div class="bal-name">Padelballen — 1 doos</div>
         <div class="bal-desc">3 officiële wedstrijdballen. Geschikt voor recreatief en competitief spel.</div>
         <div class="bal-footer">
-          <div class="bal-price">
-            <span class="bal-currency">€</span>
-            <span class="bal-amount">7</span>
-            <span class="bal-cents">,99</span>
-          </div>
+          <span class="bal-price">€7,99</span>
           <button class="btn-plus" onclick="addToCart('Padelballen (1 doos)', 7.99)">+</button>
         </div>
       </div>
     </div>
     <div class="bal-card">
       <div class="bal-img">
-        <img src="https://images.unsplash.com/photo-1599586120429-48281b6f0ece?w=600&q=80" alt="2 dozen">
+        <img src="https://images.unsplash.com/photo-1599586120429-48281b6f0ece?w=600&q=80" alt="Padelballen 2 dozen">
       </div>
       <div class="bal-body">
         <div class="bal-name">Padelballen — 2 dozen</div>
         <div class="bal-desc">6 ballen. Handig voor regelmatige spelers die altijd een reserve hebben.</div>
         <div class="bal-footer">
-          <div class="bal-price">
-            <span class="bal-currency">€</span>
-            <span class="bal-amount">14</span>
-            <span class="bal-cents">,99</span>
-          </div>
+          <span class="bal-price">€14,99</span>
           <button class="btn-plus" onclick="addToCart('Padelballen (2 dozen)', 14.99)">+</button>
         </div>
       </div>
     </div>
     <div class="bal-card">
       <div class="bal-img">
-        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&q=80" alt="4 dozen">
+        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&q=80" alt="Padelballen 4 dozen">
         <span class="bal-tag">Voordeelpak</span>
       </div>
       <div class="bal-body">
         <div class="bal-name">Padelballen — 4 dozen</div>
         <div class="bal-desc">12 ballen. Het meest voordelige pakket voor intensieve spelers en clubs.</div>
         <div class="bal-footer">
-          <div class="bal-price">
-            <span class="bal-currency">€</span>
-            <span class="bal-amount">26</span>
-            <span class="bal-cents">,99</span>
-          </div>
+          <span class="bal-price">€26,99</span>
           <button class="btn-plus" onclick="addToCart('Padelballen (4 dozen)', 26.99)">+</button>
         </div>
       </div>
@@ -276,53 +240,41 @@
   <div class="abo-grid">
     <div class="abo-card">
       <div class="abo-name">Wekelijks</div>
-      <div class="abo-price">
-        <span class="abo-currency">€</span>
-        <span class="abo-amount">8</span>
-        <span class="abo-decimals">,99</span>
-      </div>
+      <div class="abo-price">€7,99</div>
       <div class="abo-per">per week</div>
       <div class="abo-divider"></div>
       <ul class="abo-list">
         <li><i class="ti ti-check"></i> 1 doos (3 ballen) per week</li>
-        <li><i class="ti ti-check"></i> Snelle verzending</li>
+        <li><i class="ti ti-check"></i> Gratis verzending</li>
         <li><i class="ti ti-check"></i> Altijd opzegbaar</li>
       </ul>
-      <button class="btn-abo-out" onclick="addToCart('Abonnement Wekelijks', 8.99)">Afsluiten</button>
+      <button class="btn-abo-out" onclick="addToCart('Abonnement Wekelijks', 7.99)">Afsluiten</button>
     </div>
     <div class="abo-card">
       <div class="abo-name">Maandelijks — 1 doos</div>
-      <div class="abo-price">
-        <span class="abo-currency">€</span>
-        <span class="abo-amount">7</span>
-        <span class="abo-decimals">,99</span>
-      </div>
+      <div class="abo-price">€6,99</div>
       <div class="abo-per">per maand</div>
       <div class="abo-divider"></div>
       <ul class="abo-list">
         <li><i class="ti ti-check"></i> 1 doos (3 ballen) per maand</li>
-        <li><i class="ti ti-check"></i> Snelle verzending</li>
+        <li><i class="ti ti-check"></i> Gratis verzending</li>
         <li><i class="ti ti-check"></i> Altijd opzegbaar</li>
       </ul>
-      <button class="btn-abo-out" onclick="addToCart('Abonnement Maandelijks 1 doos', 7.99)">Afsluiten</button>
+      <button class="btn-abo-out" onclick="addToCart('Abonnement Maandelijks 1 doos', 6.99)">Afsluiten</button>
     </div>
     <div class="abo-card featured">
       <span class="abo-tag">Meest gekozen</span>
       <div class="abo-name">Maandelijks — 4 dozen</div>
-      <div class="abo-price">
-        <span class="abo-currency">€</span>
-        <span class="abo-amount">29</span>
-        <span class="abo-decimals">,99</span>
-      </div>
+      <div class="abo-price">€24,99</div>
       <div class="abo-per">per maand</div>
       <div class="abo-divider"></div>
       <ul class="abo-list">
         <li><i class="ti ti-check"></i> 4 dozen (12 ballen) per maand</li>
-        <li><i class="ti ti-check"></i> Snelle verzending</li>
+        <li><i class="ti ti-check"></i> Gratis verzending</li>
         <li><i class="ti ti-check"></i> 10% korting op losse ballen</li>
         <li><i class="ti ti-check"></i> Altijd opzegbaar</li>
       </ul>
-      <button class="btn-abo" onclick="addToCart('Abonnement Maandelijks 4 dozen', 29.99)">Afsluiten</button>
+      <button class="btn-abo" onclick="addToCart('Abonnement Maandelijks 4 dozen', 24.99)">Afsluiten</button>
     </div>
   </div>
 </div>
